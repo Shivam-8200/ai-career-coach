@@ -47,3 +47,9 @@ cp .env.example .env
 
 # 5. Run the development server
 npm run dev
+# or
+# yarn dev
+# or
+# pnpm dev
+# or
+# bun dev

@@ -3,7 +3,7 @@
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-//import { generateAIInsights } from "./dashboard";
+import { generateAIInsights } from "./dashboard";
 
 export async function updateUser(data) {
   const { userId } = await auth();
@@ -63,7 +63,7 @@ export async function updateUser(data) {
     return result.user;
   } catch (error) {
     console.error("Error updating user and industry:", error.message);
-    throw new Error("Failed to update profile");
+    throw new Error("Failed to update profile" + error.message);
   }
 }
 

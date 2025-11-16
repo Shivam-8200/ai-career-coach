@@ -191,3 +191,163 @@
     background-position: 0 100px;
   }
 }
+
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-popUp {
+  animation: popUp 0.4s ease-out;
+}
+
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
+}
+
+
+#resume-pdf, #resume-pdf * {
+  background-color: white !important;
+  color: black !important;
+  filter: none !important;
+}
+
+
+/* HERO IMAGE: force height, keep aspect ratio and cover */
+.hero-image img {
+  height: 600px;         /* desired visible height */
+  width: 100%;           /* fill available width */
+  max-width: 1280px;     /* optional: prevent overstretching on very wide screens */
+  object-fit: cover;     /* preserves aspect ratio and crops as needed */
+  display: block;        /* remove inline gaps */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* responsive: reduce height on tablets/phones */
+@media (max-width: 1024px) {
+  .hero-image img { height: 420px; }
+}
+@media (max-width: 640px) {
+  .hero-image img { height: 260px; }
+}
+
+
+/* Ensure the hero media fills the laptop frame exactly */
+.laptop-frame {
+  /* optional: set exact height of the laptop screen */
+  height: 520px;           /* desktop height used previously */
+}
+
+/* responsive heights — tweak numbers as you want */
+@media (max-width: 1024px) {
+  .laptop-frame { height: 440px; }
+}
+@media (max-width: 640px) {
+  .laptop-frame { height: 280px; }
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Glow + sheen — visible by default and responsive */
+
+.glow-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(4,200,140,0.34) 0%,
+    rgba(80,200,255,0.18) 18%,
+    rgba(10,30,40,0.08) 40%,
+    transparent 70%
+  );
+  opacity: var(--g-int, 0.35);
+  transition: opacity 220ms ease, filter 220ms ease;
+  mix-blend-mode: screen;
+  filter: blur(20px) saturate(1.15);
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 32;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.035) 30%,
+    rgba(255,255,255,0.055) 50%,
+    rgba(255,255,255,0.02) 70%,
+    rgba(255,255,255,0) 100%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.58;
+  transform: translateX(-30%);
+  filter: blur(8px) contrast(1.02);
+  animation: sheenDrift 9s linear infinite;
+}
+
+@media (max-width: 640px) {
+  .sheen { animation-duration: 14s; opacity: 0.38; }
+  .glow-overlay { filter: blur(14px); }
+}
+
+@keyframes sheenDrift {
+  0% { transform: translateX(-30%); }
+  50% { transform: translateX(18%); }
+  100% { transform: translateX(-30%); }
+}
+
+/* performance hints */
+.hero-image-wrapper video,
+video {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* dark-mode tweak */
+.dark .glow-overlay {
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(4,200,140,0.28) 0%,
+    rgba(80,200,255,0.14) 18%,
+    rgba(0,0,0,0.08) 40%,
+    transparent 70%
+  );
+}
+
+
